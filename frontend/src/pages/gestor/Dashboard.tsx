@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { fetchOnboardingProcesses, OnboardingProcess } from '../../services/api';
+import { deleteOnboardingProcess, fetchOnboardingProcesses, OnboardingProcess } from '../../services/api';
 import { contarEtapasConcluidas, contarItensProcesso, statusProcesso, STATUS_LABEL } from '../../utils/progresso';
 import { GestorLayout } from './GestorLayout';
 
@@ -14,6 +14,13 @@ export function Dashboard() {
       .then(setProcessos)
       .catch((err: Error) => setError(err.message));
   }, []);
+
+  async function handleExcluir(e: React.MouseEvent, id: string) {
+    e.stopPropagation();
+    if (!confirm('Excluir este processo de onboarding?')) return;
+    await deleteOnboardingProcess(id);
+    setProcessos((prev) => prev.filter((p) => p._id !== id));
+  }
 
   return (
     <GestorLayout>
@@ -45,6 +52,7 @@ export function Dashboard() {
                 <th>Itens</th>
                 <th>Progresso</th>
                 <th>Situação</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +78,11 @@ export function Dashboard() {
                     </td>
                     <td>
                       <span className={`badge badge-${status}`}>{STATUS_LABEL[status]}</span>
+                    </td>
+                    <td>
+                      <button className="link-btn danger" onClick={(e) => handleExcluir(e, processo._id)}>
+                        Excluir
+                      </button>
                     </td>
                   </tr>
                 );

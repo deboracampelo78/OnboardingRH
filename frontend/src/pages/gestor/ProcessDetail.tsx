@@ -56,6 +56,12 @@ export function ProcessDetail() {
 
   return (
     <GestorLayout>
+      <Link
+        to="/gestor"
+        style={{ fontSize: 13, color: 'var(--text-secondary)', textDecoration: 'none', display: 'inline-block', marginBottom: 12 }}
+      >
+        ← Voltar para processos
+      </Link>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
         <div>
           <h2 style={{ margin: '0 0 2px', fontSize: 18 }}>Onboarding</h2>
