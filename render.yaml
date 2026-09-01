@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: onboardingrh-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://onboardingrh-frontend.onrender.com
+
+  - type: web
+    name: onboardingrh-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://onboardingrh-backend.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
