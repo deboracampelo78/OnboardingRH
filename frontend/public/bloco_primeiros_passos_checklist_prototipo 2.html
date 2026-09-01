@@ -1,0 +1,48 @@
+<div style="background:#fff;border:0.5px solid var(--border);border-radius:12px;padding:1rem 1.25rem;max-width:480px;">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
+<i class="ti ti-briefcase" style="font-size:18px;color:#639922;" aria-hidden="true"></i>
+<h3 style="margin:0;">Seus primeiros passos</h3>
+</div>
+<p style="margin:0 0 4px;color:var(--text-secondary);font-size:13px;" id="counter">3 de 7 concluídos</p>
+<div style="background:#e7e5dd;border-radius:4px;height:6px;margin-bottom:14px;">
+<div id="bar" style="width:43%;background:#639922;height:6px;border-radius:4px;"></div>
+</div>
+<div id="list">
+<label class="row" style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid var(--border);cursor:pointer;">
+<input type="checkbox" checked style="margin-top:2px;">
+<span class="txt">Conhecer sua estação de trabalho (computador, monitor, teclado)</span></label>
+<label class="row" style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid var(--border);cursor:pointer;">
+<input type="checkbox" checked style="margin-top:2px;">
+<span class="txt">Retirar uniforme no almoxarifado</span></label>
+<label class="row" style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid var(--border);cursor:pointer;">
+<input type="checkbox" checked style="margin-top:2px;">
+<span class="txt">Ativar acesso ao e-mail corporativo</span></label>
+<label class="row" style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid var(--border);cursor:pointer;">
+<input type="checkbox" style="margin-top:2px;">
+<span class="txt">Confirmar acesso à rede e sistemas internos (Siscon, MyPlace)</span></label>
+<label class="row" style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid var(--border);cursor:pointer;">
+<input type="checkbox" style="margin-top:2px;">
+<span class="txt">Conhecer sua equipe</span></label>
+<label class="row" style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid var(--border);cursor:pointer;">
+<input type="checkbox" style="margin-top:2px;">
+<div><div class="txt">Conhecer seu coruja</div><div style="font-size:12px;color:var(--text-secondary);">Pessoa de apoio para dúvidas do dia a dia — Camila Ferreira</div></div></label>
+<label class="row" style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;cursor:pointer;">
+<input type="checkbox" style="margin-top:2px;">
+<span class="txt">Confirmar recebimento de crachá e acesso físico</span></label>
+</div>
+</div>
+<script>
+function upd(){
+  var boxes=document.querySelectorAll('#list input[type=checkbox]');
+  var done=0;
+  boxes.forEach(function(b){
+    var t=b.parentElement.querySelector('.txt');
+    if(b.checked){t.style.textDecoration='line-through';t.style.color='var(--text-muted)';done++;}
+    else{t.style.textDecoration='none';t.style.color='var(--text-primary)';}
+  });
+  document.getElementById('counter').textContent=done+' de '+boxes.length+' concluídos';
+  document.getElementById('bar').style.width=Math.round(done/boxes.length*100)+'%';
+}
+document.querySelectorAll('#list input[type=checkbox]').forEach(function(b){b.addEventListener('change',upd);});
+upd();
+</script>
