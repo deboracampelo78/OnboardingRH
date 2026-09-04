@@ -1,6 +1,7 @@
 # Onboarding RH
 
-Módulo independente de Onboarding para o sistema MyPlace (Benner). Integra-se ao MyPlace via API REST.
+Módulo independente de Onboarding para o
+integrar com qualquer sistema. Integra-se ao sistema via API REST.
 
 ## Estrutura
 
